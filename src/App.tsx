@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 
+// páginas
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Design from "./pages/Design";
@@ -11,7 +12,8 @@ function App() {
     <BrowserRouter>
       <Navbar />
 
-      <main className="pt-28">
+      {/* margen superior para que el navbar no tape el contenido */}
+      <main className="pt-60 px-6">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre-mi" element={<About />} />
