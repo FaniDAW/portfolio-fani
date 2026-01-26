@@ -13,7 +13,7 @@ function App() {
       <Navbar />
 
       {/* margen superior para que el navbar no tape el contenido */}
-      <main className="pt-60 px-6">
+      <main className="pt-24">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/sobre-mi" element={<About />} />

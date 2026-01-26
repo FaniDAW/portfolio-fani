@@ -1,5 +1,9 @@
+import HeroDots from "../components/HeroDots";
+
+
 const About = () => {
-  return <h1>Sobre mí</h1>;
+  return <HeroDots />;
 };
 
 export default About;
+
