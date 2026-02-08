@@ -15,7 +15,7 @@ const Navbar = () => {
             to="/"
             className="text-2xl font-bold tracking-tight"
           >
-            Fani<span className="text-purple-600">.dev</span>
+            Fani<span className="text-purple-600">.design</span>
           </NavLink>
 
           {/* MENU DESKTOP */}
