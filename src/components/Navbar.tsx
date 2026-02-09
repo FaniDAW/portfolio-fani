@@ -23,6 +23,8 @@ const Navbar = () => {
             <MenuLink to="/">Home</MenuLink>
             <MenuLink to="/sobre-mi">Sobre mí</MenuLink>
             <MenuLink to="/diseno">Diseño</MenuLink>
+            <MenuLink to="/desarrolloWEB">Proyectos frontend</MenuLink>
+
             <MenuLink to="/contacto">Contacto</MenuLink>
           </nav>
 

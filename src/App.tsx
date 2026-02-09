@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import Design from "./pages/Design";
+import Developer from "./pages/Developer";
 import Contact from "./pages/Contact";
 
 function App() {
@@ -18,6 +19,8 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/sobre-mi" element={<About />} />
           <Route path="/diseno" element={<Design />} />
+          <Route path="/desarrolloWEB" element={<Developer />} />
+
           <Route path="/contacto" element={<Contact />} />
         </Routes>
       </main>
