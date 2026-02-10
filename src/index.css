@@ -2,6 +2,16 @@
 @tailwind components;
 @tailwind utilities;
 
+/* 🔥 RESET CRÍTICO */
+html,
+body,
+#root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
 /* Fade in */
 @keyframes fade-in {
   from {
@@ -74,3 +84,5 @@ Clientes en movimento
 .animate-marquee {
   animation: marquee 14s linear infinite; /* 🔥 más rápido */
 }
+
+

@@ -1,40 +1,47 @@
+/**
+ * Marquee de logos de clientes
+ * - Full width REAL
+ * - Animación infinita
+ * - Funciona aunque esté dentro de layouts centrados
+ */
+
 const clients = [
-  "Google",
-  "Spotify",
-  "Adobe",
-  "Nike",
-  "Netflix",
-  "Meta",
-  "Amazon",
-  "Airbnb",
+  {
+    name: "Bodhi",
+    logo: "https://res.cloudinary.com/diaryelxt/image/upload/v1770668931/logo-1-1_mzpme6.png",
+  },
+  {
+    name: "Rabat",
+    logo: "https://res.cloudinary.com/diaryelxt/image/upload/v1770668930/Rabat_logo-_yyedtx.jpg",
+  },
+  {
+    name: "Interbaby",
+    logo: "https://res.cloudinary.com/diaryelxt/image/upload/v1770668930/interbaby-trans_n2qjan.png",
+  },
 ];
 
 export default function ClientsMarquee() {
   return (
-    /* 
-      w-screen = ocupa todo el viewport
-      overflow-hidden = corta lo que sale (efecto continuo)
-      relative = referencia para animaciones
-    */
-    <section className="w-screen overflow-hidden bg-transparent py-12">
-      {/* 
-        flex-nowrap evita saltos de línea
-        animate-marquee es la animación
-      */}
-      <div className="flex w-max animate-marquee gap-16 px-8">
-        {/* Duplicamos la lista para efecto infinito */}
-        {[...clients, ...clients].map((client, i) => (
-          <span
+    <section className="w-full overflow-hidden py-16">
+      {/* pista animada */}
+      <div className="flex w-max animate-marquee-fast gap-24 px-12">
+        {/* duplicamos 3 veces para asegurar ancho */}
+        {[...clients, ...clients, ...clients].map((client, i) => (
+          <img
             key={i}
+            src={client.logo}
+            alt={client.name}
             className="
-              text-4xl font-semibold
-              text-gray-400
-              whitespace-nowrap
+              h-14
+              object-contain
+              grayscale
+              opacity-40
+              hover:opacity-80
+              transition
+              duration-300
               select-none
             "
-          >
-            {client}
-          </span>
+          />
         ))}
       </div>
     </section>

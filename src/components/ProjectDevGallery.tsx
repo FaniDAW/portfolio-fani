@@ -1,8 +1,6 @@
 import { useEffect, useState } from "react";
 
-/**
- * 1️⃣ Tipamos el proyecto (TypeScript)
- */
+// Tipamos el proyecto (TypeScript)
 type Project = {
   id: number;
   title: string;
@@ -14,14 +12,10 @@ type Project = {
 
 export default function ProjectsDevGallery() {
 
-  /**
-   * 2️⃣ Estado para guardar los proyectos
-   */
+  //Estado para guardar los proyectos
   const [projects, setProjects] = useState<Project[]>([]);
 
-  /**
-   * 3️⃣ Pedimos los proyectos al backend cuando carga el componente
-   */
+  // Pedimos los proyectos al backend cuando carga el componente
   useEffect(() => {
     fetch("http://localhost:3001/projects")
       .then((res) => res.json())
@@ -30,9 +24,9 @@ export default function ProjectsDevGallery() {
   }, []);
 
   return (
-    <section className="w-screen py-32 bg-white dark:bg-slate-950">
+    <section className="w-screen py-32 bg-white dark:bg-zinc-900">
       
-      <h2 className="text-3xl font-semibold text-center mb-10">
+      <h2 className="text-3xl font-semibold text-center text-white mb-10">
         Proyectos
       </h2>
 

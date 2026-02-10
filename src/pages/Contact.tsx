@@ -6,7 +6,7 @@ const Contact = () => {
       <h1 className="text-4xl font-bold text-purple-600">
         Contacto
       </h1>
-      <p>Si ves esto, React Router FUNCIONA 🎉</p>
+      <p>React Router FUNCIONA 🎉</p>
     </div>
   );
 };
