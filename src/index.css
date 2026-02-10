@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+
+
+
 /* 🔥 RESET CRÍTICO */
 html,
 body,
@@ -9,6 +12,8 @@ body,
   width: 100%;
   margin: 0;
   padding: 0;
+  @apply font-sans;
+
 }
 
 

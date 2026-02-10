@@ -24,9 +24,9 @@ export default function ProjectsDevGallery() {
   }, []);
 
   return (
-    <section className="w-screen py-32 bg-white dark:bg-zinc-900">
+    <section className="w-screen py-20 bg-white dark:bg-zinc-900">
       
-      <h2 className="text-3xl font-semibold text-center text-white mb-10">
+      <h2 className="text-3xl font-semibold text-center text-pink-950 dark:text-pink-900 mb-10">
         Proyectos
       </h2>
 

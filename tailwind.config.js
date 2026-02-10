@@ -9,6 +9,9 @@ export default {
 
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Space Grotesk", "sans-serif"],
+      },
       keyframes: {
         marquee: {
           "0%": { transform: "translateX(0%)" },

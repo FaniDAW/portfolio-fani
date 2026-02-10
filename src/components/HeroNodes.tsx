@@ -2,51 +2,67 @@ import { useEffect, useRef } from "react";
 
 /**
  * HeroNodes
- * ----------
- * Hero visual con canvas interactivo
- * - Puntos flotantes (nodos)
- * - Conexiones solo al pasar el ratón
- * - Estética elegante y sutil
- * - Ideal para portfolio frontend / design
+ * =========
+ * Hero visual interactivo con canvas
+ *
+ * - Puntos (nodos) flotantes
+ * - Conexiones SOLO al pasar el ratón
+ * - Estética elegante y profesional
+ * - Pensado para reutilizarse como background
  */
 
 export default function HeroNodes() {
-  // Referencia al canvas
+  /**
+   * Referencia directa al elemento <canvas>
+   * useRef nos permite acceder al DOM sin romper React
+   */
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
 
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
 
+    /**
+     * Contexto 2D del canvas
+     * Aquí dibujamos todo (puntos, líneas, etc.)
+     */
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
     /**
-     * Ajusta el canvas al tamaño de la ventana
+     * Ajusta el tamaño del canvas al tamaño REAL del hero
+     * (no a window.innerHeight)
      */
     const resizeCanvas = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight * 0.75; // 👈 hero menos alto
+      const section = canvas.parentElement as HTMLElement;
+
+      canvas.width = section.offsetWidth;
+      canvas.height = section.offsetHeight;
     };
 
     resizeCanvas();
     window.addEventListener("resize", resizeCanvas);
 
     /**
-     * Estado del ratón
+     * Estado del ratón (coordenadas RELATIVAS al canvas)
      */
     const mouse = {
       x: canvas.width / 2,
       y: canvas.height / 2,
     };
 
+    /**
+     * Adaptamos la posición del ratón al sistema del canvas
+     */
     window.addEventListener("mousemove", (e) => {
-      mouse.x = e.clientX;
-      mouse.y = e.clientY;
+      const rect = canvas.getBoundingClientRect();
+
+      mouse.x = e.clientX - rect.left;
+      mouse.y = e.clientY - rect.top;
     });
 
     /**
-     * Creamos los nodos
+     * Creamos los nodos (puntos)
      */
     const DOTS_AMOUNT = 90;
     const dots: Dot[] = [];
@@ -56,19 +72,22 @@ export default function HeroNodes() {
     }
 
     /**
-     * Loop de animación principal
+     * Loop principal de animación
+     * requestAnimationFrame = 60fps aprox
      */
     const animate = () => {
+      // Limpiamos el canvas
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Reset del color base (blanco/gris elegante)
+      // Dibujamos todos los nodos
       dots.forEach((dot) => {
+        // Color base elegante (gris/blanco)
         dot.color = "rgba(255,255,255,0.75)";
         dot.update();
         dot.draw(ctx);
       });
 
-      // Conectar nodos solo cerca del ratón
+      // Conectamos nodos SOLO cerca del ratón
       connectDots(dots, ctx, mouse);
 
       requestAnimationFrame(animate);
@@ -76,18 +95,21 @@ export default function HeroNodes() {
 
     animate();
 
+    /**
+     * Limpieza de listeners al desmontar
+     */
     return () => {
       window.removeEventListener("resize", resizeCanvas);
     };
   }, []);
 
   return (
-    <section className="relative bg-zinc-950 overflow-hidden">
+    <section className="relative bg-pink-950 overflow-hidden">
       {/* Canvas de fondo */}
       <canvas ref={canvasRef} className="absolute inset-0" />
 
       {/* Contenido del hero */}
-      <div className="relative z-10 flex min-h-[75vh] items-center justify-center">
+      <div className="relative z-10 flex min-h-[60vh] items-center justify-center">
         <div className="text-center max-w-3xl px-6">
           <h1 className="text-5xl md:text-6xl font-bold text-white mb-6">
             Diseño + Código
@@ -121,7 +143,7 @@ class Dot {
     this.x = Math.random() * canvas.width;
     this.y = Math.random() * canvas.height;
 
-    // Velocidad suave
+    // Velocidad suave (movimiento elegante)
     this.vx = (Math.random() - 0.5) * 0.4;
     this.vy = (Math.random() - 0.5) * 0.4;
 
@@ -130,7 +152,7 @@ class Dot {
   }
 
   /**
-   * Movimiento + rebote en bordes
+   * Movimiento del nodo + rebote en bordes
    */
   update() {
     this.x += this.vx;
@@ -141,7 +163,7 @@ class Dot {
   }
 
   /**
-   * Dibuja el nodo
+   * Dibuja el nodo en el canvas
    */
   draw(ctx: CanvasRenderingContext2D) {
     ctx.beginPath();
@@ -158,7 +180,7 @@ class Dot {
 /**
  * Conecta nodos cercanos SOLO si están cerca del ratón
  * - Líneas muy sutiles
- * - Los nodos conectados se vuelven pink-800
+ * - Nodos conectados se vuelven pink-800
  */
 function connectDots(
   dots: Dot[],
@@ -179,7 +201,7 @@ function connectDots(
 
       // Solo conectamos cerca del ratón
       if (distance < 120 && mouseDistance < 160) {
-        // Línea elegante (muy suave)
+        // Línea elegante
         ctx.strokeStyle = "rgba(255,255,255,0.15)";
         ctx.lineWidth = 1;
         ctx.beginPath();
@@ -187,7 +209,7 @@ function connectDots(
         ctx.lineTo(b.x, b.y);
         ctx.stroke();
 
-        // 🎨 Resaltamos nodos conectados (pink-800)
+        // Nodos resaltados (pink-800)
         a.color = "rgb(157,23,77)";
         b.color = "rgb(157,23,77)";
       }
