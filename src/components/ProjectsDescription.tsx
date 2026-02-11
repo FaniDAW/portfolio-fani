@@ -25,10 +25,11 @@ export default function ProjectsDescription() {
         `}
       >
         <p className="text-3xl text-center leading-relaxed text-pink-900">
-            Proyectos desarrollados durante mi formación, enfocados en <strong><UnderlineHover>diseño de interfaces</UnderlineHover></strong>, 
+            Proyectos desarrollados durante mi formación, </p>
+        <p className="text-5xl text-center leading-relaxed text-pink-900">    enfocados en <strong><UnderlineHover>diseño de interfaces</UnderlineHover></strong>, 
             desarrollo frontend y <strong><UnderlineHover>experiencia de usuario</UnderlineHover></strong>.</p>
-        <br />
-        <p className="text-lg leading-relaxed text-zinc-700 dark:text-zinc-300">
+        <br /><br />
+        <p className="text-lg font-light leading-relaxed text-zinc-700 dark:text-zinc-300">
 
             Aunque estos proyectos nacen en el entorno académico, están construidos con tecnologías y flujos de trabajo
             profesionales, similares a los utilizados en entornos reales de producción.

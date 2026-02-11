@@ -10,7 +10,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["Space Grotesk", "sans-serif"],
+        sans: ["Noto Sans", "system-ui", "sans-serif"],
       },
       keyframes: {
         marquee: {

@@ -1,7 +1,7 @@
 import HeroNodes from "../components/HeroNodes";
 import ProjectsDevGallery from "../components/ProjectDevGallery";
-import Programas from "../components/Programas";
 import ProjectsDescription from "../components/ProjectsDescription";
+import TechStack from "../components/TechStack";
 
 
 export default function Developer() {
@@ -10,7 +10,8 @@ export default function Developer() {
       <HeroNodes />
       <ProjectsDevGallery />
       <ProjectsDescription />
-    <Programas />
+      <TechStack />
+    
     </>
   );
 }

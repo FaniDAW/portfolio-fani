@@ -4,7 +4,7 @@ const HeroGradient = () => {
 
       {/* FONDO ANIMADO 
       absolute inset-0 -> fondo ocupa toda la pantalla // animate-gradient --> movimiento constante, como si fuera video*/}
-      <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-500 to-indigo-600 animate-gradient" />
+      <div className="absolute inset-0 bg-gradient-to-r from-pink-950 via-pink-500 to-indigo-600 animate-gradient" />
 
       {/* CAPA OSCURA (para que el texto se lea bien) */}
       <div className="absolute inset-0 bg-black/30" />
