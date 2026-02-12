@@ -1,32 +1,30 @@
-/**
- * Rutas del formulario de contacto
- */
-
 import express from "express";
-import rateLimit from "express-rate-limit";
-import { createContact, getContacts } from "../controllers/contact.controller.js";
+import {
+  createContact,
+  getContacts,
+  getContactMetrics
+} from "../controllers/contacts.controller.js";
+
+import { verifyToken } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
 /**
- * RATE LIMIT -->> Máximo 5 envíos cada 10 minutos por IP
+ * FORMULARIO PÚBLICO
+ * POST /api/contact
  */
-const contactLimiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 10 minutos
-  max: 5,
-  message: "Demasiados intentos. Inténtalo más tarde.",
-});
+router.post("/contact", createContact);
 
 /**
- * POST /contact
- * Guardar mensaje
+ * ADMIN - mensajes
+ * GET /api/contacts
  */
-router.post("/", contactLimiter, createContact);
+router.get("/contacts", verifyToken, getContacts);
 
 /**
- * GET /contact
- * Obtener todos los mensajes (admin)
+ * ADMIN - métricas
+ * GET /api/contacts/metrics
  */
-router.get("/", getContacts);
+router.get("/contacts/metrics", verifyToken, getContactMetrics);
 
 export default router;

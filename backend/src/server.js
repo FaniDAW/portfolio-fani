@@ -13,6 +13,11 @@ import projectsRoutes from "./routes/projects.routes.js";
 //y las rutas de los contactos
 import contactRoutes from "./routes/contact.routes.js";
 
+//nuevas rutas para autenticación y las métricas
+import authRoutes from "./routes/auth.routes.js";
+import dashboardRoutes from "./routes/dashboard.routes.js";
+
+
 // Cargamos las variables del archivo .env
 dotenv.config();
 
@@ -26,6 +31,13 @@ app.use(express.json());            // Permite leer JSON en req.body
 // Rutas
 app.use("/projects", projectsRoutes);
 app.use("/contact", contactRoutes);
+
+app.use("/", contactsRoutes);
+
+app.use("/auth", authRoutes);
+app.use("/dashboard", dashboardRoutes);
+
+
 
 // Ruta de prueba
 app.get("/", (req, res) => {
