@@ -9,6 +9,7 @@ import About from "./pages/About";
 import Design from "./pages/Design";
 import Developer from "./pages/Developer";
 import Contact from "./pages/Contact";
+import AdminContacts from "./pages/AdminContacts";
 
 function App() {
   return (
@@ -23,6 +24,8 @@ function App() {
           <Route path="/diseno" element={<Design />} />
           <Route path="/desarrolloWEB" element={<Developer />} />
           <Route path="/contacto" element={<Contact />} />
+          <Route path="/admin" element={<AdminContacts />} />
+
         </Routes>
       </main>
 

@@ -90,7 +90,7 @@ Clientes en movimento
   animation: marquee 14s linear infinite;   
 }
 
-
+/*
 .input {
   @apply w-full px-4 py-3 rounded-lg
   bg-zinc-100 dark:bg-zinc-800
@@ -98,4 +98,11 @@ Clientes en movimento
   placeholder:text-zinc-500
   focus:outline-none focus:ring-2 focus:ring-pink-900
   transition;
+}
+*/
+
+.input {
+  @apply border border-zinc-200 rounded-lg px-4 py-3
+  focus:outline-none focus:ring-2 focus:ring-pink-800
+  transition-all;
 }

@@ -11,7 +11,7 @@ import dotenv from "dotenv";
 import projectsRoutes from "./routes/projects.routes.js";
 
 //y las rutas de los contactos
-//import contactRoutes from "./routes/contact.routes.js";
+import contactRoutes from "./routes/contact.routes.js";
 
 // Cargamos las variables del archivo .env
 dotenv.config();
@@ -20,12 +20,12 @@ dotenv.config();
 const app = express();
 
 // Middlewares
-app.use(cors());           // Permite peticiones desde el frontend
-app.use(express.json());   // Permite leer JSON en req.body
+app.use(cors());                    // Permite peticiones desde el frontend
+app.use(express.json());            // Permite leer JSON en req.body
 
 // Rutas
 app.use("/projects", projectsRoutes);
-//app.use("/contact", contactRoutes);
+app.use("/contact", contactRoutes);
 
 // Ruta de prueba
 app.get("/", (req, res) => {
