@@ -30,7 +30,7 @@ function App() {
       <Navbar />
 
       {/* Contenido principal */}
-      <main className="pt-24 w-full overflow-x-hidden">
+      <main className="pt-24 bg-white dark:bg-black w-full overflow-x-hidden">
 
         <Routes>
 

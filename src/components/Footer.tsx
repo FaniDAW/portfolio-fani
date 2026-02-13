@@ -51,7 +51,7 @@ export default function Footer() {
           <p className="text-lg font-semibold text-zinc-600">
             Fani<span className="text-pink-900 dark:text-pink-800">.design</span>
           </p>
-          <p className="text-sm text-gray-500 dark:text-gray-400">
+          <p className="text-sm text-zinc-700 font-light dark:text-zinc-400">
             © {new Date().getFullYear()} Todos los derechos reservados
           </p>
         </div>
@@ -69,7 +69,7 @@ export default function Footer() {
         </div>
 
         {/* REDES */}
-        <div className="flex gap-6 text-gray-500 dark:text-gray-400">
+        <div className="flex gap-6 text-gray-500 dark:text-zinc-400">
           <a href="https://www.instagram.com/fani_esquerdo/" target="_blank" className="hover:text-pink-900 transition">
             Instagram
           </a>

@@ -1,87 +1,92 @@
-// src/components/DesignGallery.tsx
 import React from "react";
+import DesignItem from "./DesignItem";
 
-// Tipo para cada imagen
-type GalleryImage = {
-  src: string;          // URL de la imagen
-  top: string;          // posición vertical (puede ser % o px)
-  left: string;         // posición horizontal
-  width: string;        // ancho de la imagen
-  height: string;       // alto de la imagen
-  objectPosition?: string; // cómo se recorta la imagen ("top", "top right", "center")
-};
+/* -----------------------------
+   DATA DE LA GALERÍA
+--------------------------------*/
 
-// Definimos las imágenes del grid con posiciones y tamaños distintos
-const galleryImages: GalleryImage[] = [
+const cardData = [
   {
-    src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-01.jpg",
-    top: "0%",
-    left: "5%",
-    width: "28%",
-    height: "60%",
-    objectPosition: "top",
+    title: "Dirección de arte",
+    image:
+      "https://res.cloudinary.com/diaryelxt/image/upload/v1770921916/7930d7_9eaab729a14b4215b77f53408a57319e_yse2vu.avif",
   },
   {
-    src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-02.jpg",
-    top: "15%",
-    left: "35%",
-    width: "33%",
-    height: "55%",
-    objectPosition: "top right",
+    title: "Dirección de arte, diseño de marca",
+    image:
+      "https://res.cloudinary.com/diaryelxt/image/upload/v1770921920/7930d7_fe1183a5b8c147528dd11be99bbfe7d9_iv7spl.avif",
   },
   {
-    src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-03.jpg",
-    top: "5%",
-    left: "72%",
-    width: "25%",
-    height: "65%",
-    objectPosition: "center",
+    title: "Dirección de arte de sesión fotográfica",
+    image:
+      "https://res.cloudinary.com/diaryelxt/image/upload/v1770921915/7930d7_eef38de1c6d941e5add33076e6463963_edvlh2.avif",
   },
   {
-    src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-04.jpg",
-    top: "50%",
-    left: "10%",
-    width: "38%",
-    height: "45%",
-    objectPosition: "top",
-  },
-  {
-    src: "https://tailwindcss.com/plus-assets/img/ecommerce-images/home-page-03-hero-image-tile-05.jpg",
-    top: "55%",
-    left: "55%",
-    width: "35%",
-    height: "40%",
-    objectPosition: "center",
+    title: "Imagen grafica para campaña Publicitaria",
+    image:
+      "https://res.cloudinary.com/diaryelxt/image/upload/v1770921910/7930d7_74671913b34a4f6a9904279719e3e101_fqlle4.avif",
   },
 ];
 
+/* -----------------------------
+   COMPONENTE PRINCIPAL
+--------------------------------*/
+
 const DesignGallery: React.FC = () => {
+  const [stopScroll, setStopScroll] = React.useState(false);
+
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-white">
-      {galleryImages.map((img, idx) => (
+    <>
+      {/* Animación del marquee */}
+      <style>{`
+        .marquee-inner {
+          animation: marqueeScroll linear infinite;
+        }
+
+        @keyframes marqueeScroll {
+          0% { transform: translateX(0%); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
+
+      {/* CONTENEDOR PRINCIPAL FULL SCREEN */}
+      <div className="animated-gradient min-h-screen flex items-center">
+        
+        {/* WRAPPER con overflow oculto */}
         <div
-          key={idx}
-          className="absolute overflow-hidden rounded-lg"
-          style={{
-            top: img.top,
-            left: img.left,
-            width: img.width,
-            height: img.height,
-            zIndex: idx + 1, // para asegurar que se superpongan ordenadamente
-          }}
+          className="overflow-hidden w-full relative"
+          onMouseEnter={() => setStopScroll(true)}
+          onMouseLeave={() => setStopScroll(false)}
         >
-          {/* Imagen recortable como en tailwind Example */}
-          <img
-            src={img.src}
-            alt={`hero-${idx}`}
-            className="w-full h-full object-cover"
+          
+          {/* Degradado lateral izquierdo */}
+          <div className="absolute left-0 top-0 h-full w-32 z-10 pointer-events-none bg-gradient-to-r from-black/60 to-transparent" />
+
+          {/* MARQUEE */}
+          <div
+            className="marquee-inner flex w-fit"
             style={{
-              objectPosition: img.objectPosition || "center",
+              animationPlayState: stopScroll ? "paused" : "running",
+              animationDuration: cardData.length * 3000 + "ms",
             }}
-          />
+          >
+            <div className="flex items-center">
+              {[...cardData, ...cardData].map((card, index) => (
+                <div key={index} className="mx-6">
+                  <DesignItem
+                    image={card.image}
+                    title={card.title}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* Degradado lateral derecho */}
+          <div className="absolute right-0 top-0 h-full w-32 z-10 pointer-events-none bg-gradient-to-l from-black/60 to-transparent" />
         </div>
-      ))}
-    </div>
+      </div>
+    </>
   );
 };
 

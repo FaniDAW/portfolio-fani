@@ -15,7 +15,7 @@ const HeroGradient = () => {
         <div className="text-center text-white max-w-3xl px-6 animate-fade-in">
           
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Hola, soy Fani
+
           </h1>
 
           <p className="text-lg md:text-xl opacity-90 mb-8">

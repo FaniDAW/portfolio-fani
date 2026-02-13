@@ -1,37 +1,22 @@
-import { db } from "../db/db.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
+/**
+ * ============================================
+ * LOGIN SIMPLE (SIN JWT REAL)
+ * ============================================
+ */
 
-export const login = async (req, res) => {
+export const login = (req, res) => {
   const { email, password } = req.body;
 
-  try {
-    const [rows] = await db.query(
-      "SELECT * FROM admins WHERE email = ?",
-      [email]
-    );
+  // Credenciales hardcodeadas (como lo tenías al inicio)
+  if (email === "admin@fani.com" && password === "1234") {
 
-    if (rows.length === 0) {
-      return res.status(401).json({ error: "Credenciales inválidas" });
-    }
+    // Token simple (no firmado)
+    const token = "admin-token-simple";
 
-    const admin = rows[0];
-
-    const match = await bcrypt.compare(password, admin.password);
-
-    if (!match) {
-      return res.status(401).json({ error: "Credenciales inválidas" });
-    }
-
-    const token = jwt.sign(
-      { id: admin.id, email: admin.email },
-      "SUPER_SECRET_KEY",
-      { expiresIn: "2h" }
-    );
-
-    res.json({ token });
-
-  } catch (error) {
-    res.status(500).json({ error: "Error en login" });
+    return res.json({ token });
   }
+
+  return res.status(401).json({
+    message: "Credenciales incorrectas"
+  });
 };

@@ -61,7 +61,7 @@ const MenuLink = ({ to, children }: { to: string; children: React.ReactNode }) =
       to={to}
       className="relative font-medium text-gray-800
         after:absolute after:left-0 after:-bottom-1
-        after:h-[2px] after:w-0 after:bg-purple-600
+        after:h-[2px] after:w-0 after:bg-pink-900
         hover:after:w-full after:transition-all"
     >
       {children}

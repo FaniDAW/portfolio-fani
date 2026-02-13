@@ -1,9 +1,22 @@
-import HeroDots from "../components/HeroDots";
+import AboutSection from "../components/AboutSection";
+import Timeline from "../components/Timeline";
+import SectionDivider from "../components/SectionDivider";
 
 
-const About = () => {
-  return <HeroDots />;
-};
+function About() {
+  return (
+    <>
+      {/* texto sobre mi */}
+      
+      <AboutSection />
+
+      {/* experiencia profesional */}
+      <Timeline />
+      
+      <SectionDivider  height="h-[200px]" />
+
+    </>
+  );
+}
 
 export default About;
-

@@ -1,45 +1,44 @@
-import { useReveal } from "../hooks/useReveal";
+import React from "react";
 
-type DesignItemProps = {
-  image: string;
-  title: string;
-  client: string;
+/* -----------------------------
+   TIPADO DE PROPS (TypeScript)
+--------------------------------*/
+
+export type DesignItemProps = {
+  image: string;   // URL de la imagen
+  title: string;   // Título que aparece en hover
 };
 
-const DesignItem = ({ image, title, client }: DesignItemProps) => {
-  const { ref, isVisible } = useReveal();
+/* -----------------------------
+   COMPONENTE
+--------------------------------*/
 
+const DesignItem: React.FC<DesignItemProps> = ({ image, title }) => {
   return (
-    <div
-      ref={ref}
-      className={`
-        relative group overflow-hidden rounded-xl
-        transition-all duration-700 ease-out
-        ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}
-      `}
-    >
+    <div className="w-64 h-[24rem] relative group overflow-hidden rounded-2xl transition-all duration-300 hover:scale-95">
+      
       {/* IMAGEN */}
       <img
         src={image}
         alt={title}
-        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+        className="w-full h-full object-cover"
       />
 
       {/* OVERLAY */}
       <div
         className="
           absolute inset-0
-          bg-black/60
+          bg-black/40
+          backdrop-blur-sm
+          flex items-center justify-center
           opacity-0
           group-hover:opacity-100
-          transition
-          flex items-center justify-center
+          transition-all duration-300
         "
       >
-        <div className="text-center text-white px-4">
-          <p className="font-semibold">{title}</p>
-          <p className="text-sm opacity-80">{client}</p>
-        </div>
+        <p className="text-white text-lg font-semibold text-center px-4">
+          {title}
+        </p>
       </div>
     </div>
   );

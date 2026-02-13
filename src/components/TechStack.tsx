@@ -9,11 +9,14 @@ import { useRevealOnScroll } from "../hooks/useRevealOnScroll";
  */
 
 const techs = [
-  { name: "React", logo: "/logos/react.svg" },
-  { name: "TypeScript", logo: "/logos/typescript.svg" },
-  { name: "Tailwind", logo: "/logos/tailwind.svg" },
-  { name: "Vite", logo: "/logos/vite.svg" },
-  { name: "Bootstrap", logo: "/logos/bootstrap.svg" },
+  { name: "React", logo: "https://res.cloudinary.com/diaryelxt/image/upload/v1770920183/react_duz4qp.png" },
+  { name: "JavaScript", logo: "https://res.cloudinary.com/diaryelxt/image/upload/v1770920183/javaScript_anaikb.png" },
+  { name: "Tailwind", logo: "https://res.cloudinary.com/diaryelxt/image/upload/v1770920183/tailwind2_xgj4uq.png" },
+  { name: "Vite", logo: "https://res.cloudinary.com/diaryelxt/image/upload/v1770920186/vite2_ndcdcl.png" },
+  { name: "Bootstrap", logo: "https://res.cloudinary.com/diaryelxt/image/upload/v1770920185/Bootstrap_logo.svg_t3xyaj.png" },
+  { name: "Node", logo: "https://res.cloudinary.com/diaryelxt/image/upload/v1770920185/Node2_nb47de.png" },
+
+  
 ];
 
 export default function TechStack() {
@@ -36,10 +39,10 @@ export default function TechStack() {
       >
         {/* TEXTO */}
         <div className="md:col-span-1">
-          <h3 className="text-2xl font-semibold text-pink-900 mb-4">
+          <h3 className="text-2xl font-semibold text-pink-900 dark:text-pink-800 mb-4">
             Software & herramientas
           </h3>
-          <p className="text-zinc-600 dark:text-zinc-400 leading-relaxed">
+          <p className="text-zinc-700 font-light dark:text-zinc-300 leading-relaxed">
             Tecnologías utilizadas a lo largo del desarrollo de los proyectos,
             desde la estructura y el diseño hasta la lógica y las animaciones.
           </p>

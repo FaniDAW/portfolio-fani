@@ -1,10 +1,9 @@
 import { useState } from "react";
 
 /**
- * ContactForm PRO
- * - Conectado a backend real
- * - Loader animado
- * - Feedback visual elegante
+ * ContactForm 
+ * - Conectado a backend
+ * - Loader animado + Feedback visual elegante
  * - Honeypot anti-bots
  */
 
@@ -78,23 +77,25 @@ export default function ContactForm() {
   };
 
   return (
-    <section className="relative w-screen py-32 overflow-hidden bg-white">
+    <section className="relative w-screen py-32 overflow-hidden bg-white bg-white dark:bg-black">
 
-      {/* FONDO GRADIENTE ANIMADO */}
-      <div className="absolute inset-0 bg-gradient-to-r from-pink-950 via-pink-500 to-indigo-600 animate-gradient opacity-10" />
+      {/* FONDO  */}
+      <div className="absolute inset-0 bg-gradient-to-br from-pink-50/40 to-transparent dark:from-pink-950/20" />
 
       <div className="relative max-w-4xl mx-auto px-6">
+        
 
         {/* TEXTO */}
         <div className="mb-16 text-center">
-          <h2 className="text-3xl font-semibold text-zinc-900 mb-6">
+          <h2 className="text-3xl font-semibold text-pink-900 dark:text-gray-200 mb-6">
             Hablemos
           </h2>
 
-          <p className="text-zinc-600 leading-relaxed max-w-2xl mx-auto">
-            Si tienes una idea, una colaboración en mente o quieres
-            desarrollar una interfaz con identidad propia,
-            estaré encantada de escucharte.
+          <p className="text-zinc-700 font-light dark:text-gray-200 leading-relaxed max-w-2xl mx-auto">
+            ¿Tienes una idea, un proyecto o simplemente una pregunta?
+            Estoy abierta a colaboraciones, propuestas profesionales
+            y nuevos retos donde el diseño y el desarrollo frontend
+            tengan un papel protagonista.
           </p>
         </div>
 

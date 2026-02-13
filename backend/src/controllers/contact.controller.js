@@ -1,21 +1,17 @@
 /**
  * ============================================
- * CONTACTS CONTROLLER
+ * CONTROLADOR DE CONTACTOS
  * ============================================
- * Gestiona:
- * - Crear mensaje (formulario público)
- * - Obtener mensajes (admin)
- * - Obtener métricas (admin)
  */
 
 import { db } from "../db/db.js";
 
 
 /**
- * ==================================================
- * POST /contact
- * Crear un nuevo mensaje desde el formulario público
- * ==================================================
+ * ============================================
+ * POST /api/contact
+ * Crear nuevo mensaje
+ * ============================================
  */
 export const createContact = async (req, res) => {
   try {
@@ -23,14 +19,15 @@ export const createContact = async (req, res) => {
 
     /**
      * HONEYPOT
-     * Si el campo oculto "company" viene con contenido, asumimos que es un bot y NO guardamos nada.
+     * Si "company" viene relleno → es bot
      */
     if (company) {
       return res.status(200).json({ message: "OK" });
     }
 
     /**
-     * Insertamos el mensaje en base de datos created_at se genera automáticamente
+     * Insertamos en base de datos
+     * created_at se genera automáticamente
      */
     const [result] = await db.query(
       "INSERT INTO contacts (name, email, phone, message) VALUES (?, ?, ?, ?)",
@@ -38,7 +35,7 @@ export const createContact = async (req, res) => {
     );
 
     /**
-     * Recuperamos el mensaje recién creado para devolver el objeto completo al frontend
+     * Recuperamos el mensaje creado
      */
     const [rows] = await db.query(
       "SELECT * FROM contacts WHERE id = ?",
@@ -55,14 +52,13 @@ export const createContact = async (req, res) => {
 
 
 /**
- * ==================================================
- * GET /contacts
- * Devuelve TODOS los mensajes (solo admin)
- * ==================================================
+ * ============================================
+ * GET /api/contacts
+ * Obtener todos los mensajes (ADMIN)
+ * ============================================
  */
 export const getContacts = async (req, res) => {
   try {
-
     const [rows] = await db.query(
       "SELECT * FROM contacts ORDER BY created_at DESC"
     );
@@ -77,22 +73,23 @@ export const getContacts = async (req, res) => {
 
 
 /**
- * ==================================================
- * GET /contacts/metrics -->>. Devuelve métricas para dashboard admin
- * ==================================================
+ * ============================================
+ * GET /api/contacts/metrics
+ * Obtener métricas para dashboard
+ * ============================================
  */
 export const getContactMetrics = async (req, res) => {
   try {
 
     /**
-     * Total de mensajes almacenados
+     * Total mensajes
      */
     const [totalResult] = await db.query(
       "SELECT COUNT(*) as total FROM contacts"
     );
 
     /**
-     * Mensajes creados en los últimos 7 días
+     * Últimos 7 días
      */
     const [weekResult] = await db.query(
       `SELECT COUNT(*) as weekTotal

@@ -1,30 +1,36 @@
+/**
+ * ============================================
+ * RUTAS CONTACTO
+ * ============================================
+ */
+
 import express from "express";
 import {
   createContact,
   getContacts,
   getContactMetrics
-} from "../controllers/contacts.controller.js";
+} from "../controllers/contact.controller.js";
 
 import { verifyToken } from "../middleware/auth.middleware.js";
 
 const router = express.Router();
 
 /**
- * FORMULARIO PÚBLICO
- * POST /api/contact
+ * POST - Enviar formulario
+ * URL FINAL: /contact
  */
-router.post("/contact", createContact);
+router.post("/", createContact);
 
 /**
- * ADMIN - mensajes
- * GET /api/contacts
+ * GET - Obtener mensajes (admin)
+ * URL FINAL: /contact/contacts
  */
 router.get("/contacts", verifyToken, getContacts);
 
 /**
- * ADMIN - métricas
- * GET /api/contacts/metrics
+ * GET - Métricas
+ * URL FINAL: /contact/metrics
  */
-router.get("/contacts/metrics", verifyToken, getContactMetrics);
+router.get("/metrics", verifyToken, getContactMetrics);
 
 export default router;
